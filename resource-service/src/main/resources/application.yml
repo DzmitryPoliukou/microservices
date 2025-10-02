@@ -9,7 +9,7 @@ spring:
     hibernate:
       ddl-auto: update
   datasource:
-    url: jdbc:postgresql://localhost:5434/resource-db
+    url: jdbc:postgresql://resource-db:5432/resource-db
     username: postgres
     password: postgres
     driver-class-name: org.postgresql.Driver
@@ -25,4 +25,4 @@ logging:
               BasicBinder: TRACE
 
 song-service:
-  url: http://localhost:8084
+  url: http://song-service:8084

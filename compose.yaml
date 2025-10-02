@@ -16,3 +16,21 @@ services:
       POSTGRES_PASSWORD: postgres
     ports:
       - "5433:5432"
+
+  resource-service:
+    build:
+      context: ./resource-service
+      dockerfile: Dockerfile
+    ports:
+      - "8083:8083"
+    depends_on:
+      - resource-db
+
+  song-service:
+    build:
+      context: ./song-service
+      dockerfile: Dockerfile
+    ports:
+      - "8084:8084"
+    depends_on:
+      - song-db
