@@ -6,12 +6,10 @@ spring:
     name: resource-service
   jpa:
     show-sql: true
-    hibernate:
-      ddl-auto: update
   datasource:
-    url: jdbc:postgresql://localhost:5434/resource-db
-    username: postgres
-    password: postgres
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5434/resource_db}
+    username: ${SPRING_DATASOURCE_USERNAME:postgres}
+    password: ${SPRING_DATASOURCE_PASSWORD:postgres}
     driver-class-name: org.postgresql.Driver
 
 logging:
@@ -25,4 +23,4 @@ logging:
               BasicBinder: TRACE
 
 song-service:
-  url: http://localhost:8084
+  url: ${SONG_SERVICE_URL:http://localhost:8084}
