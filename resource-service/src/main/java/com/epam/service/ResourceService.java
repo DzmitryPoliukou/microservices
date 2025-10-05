@@ -29,9 +29,6 @@ import org.xml.sax.SAXException;
 @Service
 public class ResourceService {
 
-  @Value("${song-service.url}")
-  private String songServiceUrl;
-
   private final ResourceRepository resourceRepository;
   private final RestTemplate restTemplate;
 
@@ -98,13 +95,13 @@ public class ResourceService {
   }
 
   private Map<String, Object> saveSongMetadata(Map<String, Object> songMetadata) {
-    return restTemplate.postForObject(songServiceUrl + "/songs", songMetadata, Map.class);
+    return restTemplate.postForObject("http://song-service/songs", songMetadata, Map.class);
   }
 
   private void deleteSongMetadata(List<Integer> resourceIds) {
     if (resourceIds != null && !resourceIds.isEmpty()) {
       String idsParam = String.join(",", resourceIds.stream().map(Object::toString).toList());
-      restTemplate.delete(songServiceUrl + "/songs?id={ids}", Map.of("ids", idsParam));
+      restTemplate.delete("http://song-service/songs?id={ids}", Map.of("ids", idsParam));
     }
   }
 
